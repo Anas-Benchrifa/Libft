@@ -17,8 +17,11 @@ static	int	int_len(int n)
 	int	len;
 
 	len = 1;
-	while (n /= 10)
+	while (n / 10)
+	{
+		n /= 10;
 		len++;
+	}
 	return (len);
 }
 

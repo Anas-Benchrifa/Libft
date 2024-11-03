@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone_boonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mac <mac@student.42.fr>                    #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-23 23:42:31 by mac               #+#    #+#             */
-/*   Updated: 2024-10-23 23:42:31 by mac              ###   ########.fr       */
+/*   Created: 2024-11-03 10:46:34 by mac               #+#    #+#             */
+/*   Updated: 2024-11-03 10:46:34 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+void	ft_lstdelone_bonus(t_list *lst, void (*del)(void *))
 {
-	return (c >= 0 && c <= 127);
+	if (!lst || !del)
+		return ;
+	del(lst->content);
+	free(lst);
 }

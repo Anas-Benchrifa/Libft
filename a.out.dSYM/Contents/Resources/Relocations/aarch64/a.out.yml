@@ -1,0 +1,11 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     a.out
+relocations:
+  - { offset: 0x26, size: 0x8, addend: 0x0, symName: _add_at_end, symObjAddr: 0x0, symBinAddr: 0x100003D1C, symSize: 0x9C }
+  - { offset: 0x78, size: 0x8, addend: 0x0, symName: _add_at_end, symObjAddr: 0x0, symBinAddr: 0x100003D1C, symSize: 0x9C }
+  - { offset: 0xC6, size: 0x8, addend: 0x0, symName: _print_node, symObjAddr: 0x9C, symBinAddr: 0x100003DB8, symSize: 0x70 }
+  - { offset: 0xF8, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x10C, symBinAddr: 0x100003E28, symSize: 0x8C }
+  - { offset: 0x169, size: 0x8, addend: 0x0, symName: _ft_lstadd_back_bonus, symObjAddr: 0x0, symBinAddr: 0x100003EB4, symSize: 0xB0 }
+  - { offset: 0x177, size: 0x8, addend: 0x0, symName: _ft_lstadd_back_bonus, symObjAddr: 0x0, symBinAddr: 0x100003EB4, symSize: 0xB0 }
+...

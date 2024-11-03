@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mac <mac@student.42.fr>                    #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-23 23:42:31 by mac               #+#    #+#             */
-/*   Updated: 2024-10-23 23:42:31 by mac              ###   ########.fr       */
+/*   Created: 2024-11-01 18:00:32 by mac               #+#    #+#             */
+/*   Updated: 2024-11-01 18:00:32 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+int	ft_lstsize_bonus(t_list *lst)
 {
-	return (c >= 0 && c <= 127);
+	int		node_len;
+	t_list	*ptr;
+
+	ptr = lst;
+	node_len = 0;
+	while (ptr != NULL)
+	{
+		node_len++;
+		ptr = ptr->next;
+	}
+	return (node_len);
 }
