@@ -14,7 +14,7 @@
 
 void	ft_lstadd_back_bonus(t_list **lst, t_list *new)
 {
-	t_list	*lst_0E;
+	t_list	*lst_0;
 
 	if (!lst || !new)
 		return ;
@@ -23,8 +23,8 @@ void	ft_lstadd_back_bonus(t_list **lst, t_list *new)
 		*lst = new;
 		return ;
 	}
-	lst_0E = *lst;
-	while (lst_0E->next != NULL)
-		lst_0E = lst_0E->next;
-	lst_0E->next = new;
+	lst_0 = *lst;
+	while (lst_0->next != NULL)
+		lst_0 = lst_0->next;
+	lst_0->next = new;
 }

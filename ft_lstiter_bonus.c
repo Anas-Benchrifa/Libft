@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone_boonus.c                              :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mac <mac@student.42.fr>                    #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-11-03 10:46:34 by mac               #+#    #+#             */
-/*   Updated: 2024-11-03 10:46:34 by mac              ###   ########.fr       */
+/*   Created: 2024-11-03 18:06:35 by mac               #+#    #+#             */
+/*   Updated: 2024-11-03 18:06:35 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone_bonus(t_list *lst, void (*del)(void *))
+void	ft_lstiter_bonus(t_list *lst, void (*f)(t_list *))
 {
-	if (!lst || !del)
-		return ;
-	del(lst->content);
-	free(lst);
+	while (lst)
+	{
+		f(lst->next);
+		lst = lst->next;
+	}
 }

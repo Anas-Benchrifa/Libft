@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
+/*   ft_lstdelone_boonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mac <mac@student.42.fr>                    #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-11-01 15:05:24 by mac               #+#    #+#             */
-/*   Updated: 2024-11-01 15:05:24 by mac              ###   ########.fr       */
+/*   Created: 2024-11-03 10:46:34 by mac               #+#    #+#             */
+/*   Updated: 2024-11-03 10:46:34 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	fft_lstclear_bonus(t_list **lst, void (*del)(void *))
 {
-	if (!lst || !new)
-		return ;
-	new->next = *lst;
-	*lst = new;
+	t_list	*temp;
+
+	while (*lst)
+	{
+		temp = (*lst)->next;
+		del((*lst)->next);
+		free(*lst);
+		*lst = temp;
+	}
+	*lst = NULL;
 }

@@ -19,7 +19,7 @@ int	ft_atoi(const char *str)
 	result = 0;
 	index = 0;
 	sign = 1;
-	while (str[index] == ' ' || (str[index] >= 9 && str[index] <= 13))
+	while (index[str] == ' ' || (str[index] >= 9 && str[index] <= 13))
 		index++;
 	if (str[index] == 45 || str[index] == 43)
 	{

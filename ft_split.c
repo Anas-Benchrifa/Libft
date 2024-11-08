@@ -33,6 +33,29 @@ static	size_t	count_word(char const *s, char c)
 	return (count);
 }
 
+static	int	get_next_word(char const *s, char c, size_t *start, size_t *end)
+{
+	while (s[*start] && s[*start] == c)
+		(*start)++;
+	*end = *start;
+	while (s[*end] && s[*end] != c)
+		(*end)++;
+	return (*start < *end);
+}
+
+static	void	free_split(char **result, size_t words_allocated)
+{
+	size_t	index;
+
+	index = 0;
+	while (index < words_allocated)
+	{
+		free(result[index]);
+		index++;
+	}
+	free(result);
+}
+
 static	char	*creat_word(char const *s, size_t start, size_t end)
 {
 	char	*words;
@@ -43,11 +66,7 @@ static	char	*creat_word(char const *s, size_t start, size_t end)
 		return (NULL);
 	index = 0;
 	while (start < end)
-	{
-		words[index] = s[start];
-		index++;
-		start++;
-	}
+		words[index++] = s[start++];
 	words[index] = '\0';
 	return (words);
 }
@@ -57,23 +76,22 @@ char	**ft_split(char const *s, char c)
 	char	**result;
 	size_t	index_r;
 	size_t	start;
-	size_t	index;
+	size_t	end;
 
 	result = (char **)malloc((count_word(s, c) + 1) * sizeof(char *));
 	if (!result)
 		return (NULL);
-	index = 0;
 	start = 0;
 	index_r = 0;
-	while (s[index])
+	while (get_next_word(s, c, &start, &end))
 	{
-		while (s[index] && (s[index] == c))
-			index++;
-		start = index;
-		while (s[index] && (s[index] != c))
-			index++;
-		if (start < index)
-			result[index_r++] = creat_word(s, start, index);
+		result[index_r] = creat_word(s, start, end);
+		if (!result[index_r++])
+		{
+			free_split(result, index_r - 1);
+			return (NULL);
+		}
+		start = end;
 	}
 	result[index_r] = NULL;
 	return (result);
