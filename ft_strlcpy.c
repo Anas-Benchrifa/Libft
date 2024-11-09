@@ -15,20 +15,20 @@
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	len_s;
-	size_t	index;
 
 	len_s = ft_strlen(src);
-	index = 0;
-	if ((len_s + 1) >= dstsize)
+	if (dstsize != 0)
 	{
-		while (dstsize--)
+		if (len_s <= dstsize - 1)
 		{
-			dst[index] = src[index];
-			index++;
+			ft_memcpy(dst, src, len_s);
+			dst[len_s] = '\0';
 		}
-		dst[index] = '\0';
+		else
+		{
+			ft_memcpy(dst, src, (dstsize - 1));
+			dst[dstsize - 1] = '\0';
+		}
 	}
-	else
-		ft_memcpy(dst, src, dstsize);
 	return (len_s);
 }

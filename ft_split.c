@@ -61,7 +61,7 @@ static	char	*creat_word(char const *s, size_t start, size_t end)
 	char	*words;
 	size_t	index;
 
-	words = (char *)malloc(((end - start) + 1) * sizeof(char *));
+	words = (char *)malloc(((end - start) + 1) * sizeof(char ));
 	if (!words)
 		return (NULL);
 	index = 0;
@@ -78,6 +78,8 @@ char	**ft_split(char const *s, char c)
 	size_t	start;
 	size_t	end;
 
+	if (!s)
+		return (NULL);
 	result = (char **)malloc((count_word(s, c) + 1) * sizeof(char *));
 	if (!result)
 		return (NULL);

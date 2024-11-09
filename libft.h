@@ -48,7 +48,7 @@ t_list	*ft_lstlast_bonus(t_list *lst);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-void	ft_putendl(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
 void	ft_bzero(void *s, size_t n);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *s);

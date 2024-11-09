@@ -23,25 +23,24 @@ static	int	sheck_set(char const *s, int c)
 	return (0);
 }
 
-char	*ft_strtrim(char const *s, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*trimmed;
 	size_t	start;
 	size_t	end;
-	size_t	len;
 
-	if (!s || !set)
+	if (!s1 || !set)
 		return (NULL);
 	start = 0;
-	while (s[start] && sheck_set(set, s[start]))
+	end = ft_strlen(s1);
+	while (s1[start] && sheck_set(set, s1[start]))
 		start++;
-	end = ft_strlen(s) - 1;
-	while (s[end] && sheck_set(set, s[end]))
+	while (end > start && sheck_set(set, s1[end - 1]))
 		end--;
-	len = end - start;
-	trimmed = (char *)malloc((len + 1) * sizeof(char));
+	trimmed = (char *)malloc((end - start + 1) * sizeof(char));
 	if (!trimmed)
 		return (NULL);
-	ft_memcpy(trimmed, &s[start], len + 1);
+	ft_memcpy(trimmed, &s1[start], end - start);
+	trimmed[end - start] = '\0';
 	return (trimmed);
 }

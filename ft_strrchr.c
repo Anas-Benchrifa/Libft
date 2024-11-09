@@ -14,12 +14,19 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char	*ptr;
+	size_t				len;
+	const unsigned char	*_s;
+	unsigned char		_c;
 
-	if (!s)
-		return (NULL);
-	ptr = NULL;
-	if (s)
-		ptr = ft_strchr(s, c);
-	return (ptr);
+	_s = (const unsigned char *)s;
+	_c = (unsigned char )c;
+	len = ft_strlen(s);
+	while (len-- > 0)
+	{
+		if (_s[len] == _c)
+			return ((char *)(_s + len));
+	}
+	if (_c == '\0')
+		return ((char *)(_s + ft_strlen(s)));
+	return (NULL);
 }
