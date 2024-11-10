@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mac <mac@student.42.fr>                    #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-25 17:51:35 by mac               #+#    #+#             */
-/*   Updated: 2024-10-25 17:51:35 by mac              ###   ########.fr       */
+/*   Created: 2024-11-10 15:50:47 by mac               #+#    #+#             */
+/*   Updated: 2024-11-10 15:50:47 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	const unsigned char	*ptr_src;
-	unsigned char		*ptr_dst;
+	t_list	*node_lst;
+	t_list	*ptr_node;
+	t_list	*node;
 
-	if (!dst && !src)
+	if (!lst || !f || !del)
 		return (NULL);
-	ptr_dst = (unsigned char *)dst;
-	ptr_src = (const unsigned char *)src;
-	if (ptr_dst > ptr_src)
+	node_lst = NULL;
+	while (lst)
 	{
-		while (len > 0)
+		node = f(lst->content);
+		ptr_node = ft_lstnew(node);
+		if (!ptr_node)
 		{
-			len--;
-			ptr_dst[len] = ptr_src[len];
+			del(ptr_node->content);
+			ft_lstclear(&node_lst, (*del));
+			return (node_lst);
 		}
+		ft_lstadd_back(&node_lst, ptr_node);
+		lst = lst->next;
 	}
-	else
-		ft_memcpy(ptr_dst, ptr_src, len);
-	
-	return (dst);
+	return (node_lst);
 }
