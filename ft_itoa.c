@@ -12,15 +12,19 @@
 
 #include "libft.h"
 
-static	int	int_len(int n)
+static	int	len_of_n(int n)
 {
 	int	len;
 
-	len = 1;
-	while (n / 10)
-	{
-		n /= 10;
+	len = 0;
+	if (n == 0)
+		return (1);
+	if (n < 0)
 		len++;
+	while (n != 0)
+	{
+		len++;
+		n /= 10;
 	}
 	return (len);
 }
@@ -28,26 +32,26 @@ static	int	int_len(int n)
 char	*ft_itoa(int n)
 {
 	char	*change;
-	int		sign;
 	int		len;
+	long	_n;
 
-	len = int_len(n);
-	if (n < 0)
-	{
-		sign = -1;
-		len++;
-	}
-	else
-		sign = 1;
-	change = (char *)malloc((len + 1) * sizeof(char));
+	_n = n;
+	len = len_of_n(n);
+	change = (char *)malloc(len + 1);
 	if (!change)
 		return (NULL);
-	while (len--)
+	if (_n == 0)
+		change[0] = '0';
+	change[len] = '\0';
+	if (_n < 0)
 	{
-		change[len] = ((n % 10) * sign) + '0';
-		n /= 10;
-	}
-	if (sign == -1)
 		change[0] = '-';
+		_n = -_n;
+	}
+	while (len-- && _n > 0)
+	{
+		change[len] = (_n % 10) + '0';
+		_n /= 10;
+	}
 	return (change);
 }
