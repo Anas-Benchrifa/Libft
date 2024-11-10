@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	fft_lstclear_bonus(t_list **lst, void (*del)(void *))
+void	fft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*temp;
 
